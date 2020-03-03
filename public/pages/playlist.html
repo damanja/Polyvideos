@@ -1,0 +1,45 @@
+<html ng-app="Polyvideos">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="pages/css/main.css" rel="stylesheet"/>
+    <link href="pages/css/styles.css" rel="stylesheet"/>
+
+  </head>
+  <body ng-controller="mainController">
+    <div id='cssmenu'>
+        <ul>
+            <li><a href='#' ng-click="goToSearch()">Search</a></li>
+            <li><a href='#' ng-click="goToLikes()">Likes</a></li>
+            <li class='active'><a href='#' ng-click="goToPlaylists()">Playlists</a></li>
+            <li style="position:absolute;right:0px"><a href='#' onclick="logout()">Sign out</a></li>
+        </ul>
+    </div>
+    <div class="s130">
+      <form>
+          <div ng-repeat="x in laliste" class="row">
+              <table style="background:#f5e1ba">
+                <tr>
+                  <td width="1000">
+                      <ul>
+                      <li><a href="" ng-click="getVideos(x._id)"> {{ x.titre }} </a> </li>
+                      <td colspan="3"><button ng-click="removePlaylist(x._id)">Remove</button>
+                      </ul>
+                    </td>
+                </tr>
+                <tr><br><br></tr>
+              </table>
+          </div>
+      </form>
+    </div>
+    
+    <script src ="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="./pages/accueil.js"></script>
+    <script src="./pages/playlist.js"></script>
+    
+
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

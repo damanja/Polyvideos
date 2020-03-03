@@ -1,0 +1,86 @@
+<html ng-app="Polyvideos">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="pages/css/main.css" rel="stylesheet"/>
+    <link href="pages/css/styles.css" rel="stylesheet"/>
+
+  </head>
+  <body ng-controller="mainController">
+    <div id='cssmenu' style="position:fixed;right:0px;left:0px">
+        <ul>
+            <li class='active'><a href='#' ng-click="goToSearch()">Search</a></li>
+            <li><a href='#' ng-click="goToLikes()">Likes</a></li>
+            <li><a href='#' ng-click="goToPlaylists()">Playlists</a></li>
+            <li style="position:absolute;right:0px"><a href='#' onclick="logout()">Sign out</a></li>
+        </ul>
+    </div>
+    <div class="s130">
+      <form>
+        <div class="inner-form" style="clear:both">
+          <div class="input-field first-wrap">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg>
+            </div>
+            <input id="search" type="text" ng-model="formData.keyword" placeholder="Type your research here..." />
+          </div>
+          <div class="input-field second-wrap">
+            <button class="btn-search" type="button" ng-click="search()" style="position:static">SEARCH</button>
+          </div>
+        </div>
+        <span class="info">ex. Sport, News, Music</span>
+          <div ng-repeat="x in laliste" class="row">
+              <table style="background:#f5e1ba">
+                <tr>
+                  <td rowspan="4" width="20%"><img ng-src="{{x.thumbnail}}" width="95%" height="150px"/></td>
+                  <td colspan="6" width="100%"><a href="" id="video" ng-click="play(x.infos.videoId)"> {{ x.infos.title }} </a></td>
+                </tr>
+                <tr>
+                  <td width="1%"><img src="./pages/images/channel.png" width="25px" height="25px"></td>
+                  <td width="20%"> {{ x.infos.author.name }} </td>
+                  <td width="1%"><img src="./pages/images/views.png" width="25px" height="25px"></td>
+                  <td width="20%"> {{ x.infos.views }} views </td>
+                  <td width="1%"><img src="./pages/images/clock.png" width="25px" height="25px"></td>
+                  <td width="20%"> {{ x.infos.ago }} </td>
+                </tr>
+                <tr>
+                  <td colspan="3"> Time : {{ x.infos.timestamp }} </td>
+                  <td colspan="1"><button ng-click="addToLikes(x.infos.videoId,x)">Add to Likes</button>
+                  <td colspan="2">
+                      <ul id="menu-vertical">
+                        <li><button ng-click="get_playlist($index)">Add to Playlist</button>
+                        <div class="list_playlist"> 
+                            <ul >
+                              <li ng-repeat="pl in all_playlist"><a href="#" ng-click="add_to_playlist(x, pl._id,$index)"> {{ pl.titre }} </a></li>
+                              <li class="new_playlist">
+                                <input type="text" ng-model="formDataPlaylist.name" size="3">
+                                <button ng-click="create_playlist($index)">ok</button>
+                              </li>
+                              <li class="toggle_view">
+                                <button ng-click="create_new_playlist($index)">
+                                  New playlist
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                </tr>
+                <tr><br><br></tr>
+              </table>
+          </div>
+      </form>
+    </div>
+    
+    <script src ="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="./pages/accueil.js"></script>
+    <script src="./pages/accueil2.js"></script>
+
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

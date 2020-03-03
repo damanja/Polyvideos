@@ -1,0 +1,62 @@
+<html ng-app="Polyvideos">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="pages/css/main.css" rel="stylesheet"/>
+    <link href="pages/css/styles.css" rel="stylesheet"/>
+
+  </head>
+  <body ng-controller="mainController">
+    <div id='cssmenu'>
+        <ul>
+            <li><a href='#' ng-click="goToSearch()">Search</a></li>
+            <li class='active'><a href='#' ng-click="goToLikes()">Likes</a></li>
+            <li><a href='#' ng-click="goToPlaylists()">Playlists</a></li>
+            <li style="position:absolute;right:0px"><a href='#' onclick="logout()">Sign out</a></li>
+        </ul>
+    </div>
+    <div class="s130">
+      <form>
+          <div ng-repeat="x in laliste" class="row">
+              <table style="background:#f5e1ba">
+                <tr>
+                  <td rowspan="4" width="20%"><img ng-src="{{x.thumbnail}}" width="95%" height="150px"/></td>
+                  <td colspan="6" width="100%"><a href="" id="video" ng-click="play(x.infos.videoId)"> {{ x.title }} </a></td>
+                </tr>
+                <tr>
+                  <td width="1%"><img src="./pages/images/channel.png" width="25px" height="25px"></td>
+                  <td width="20%"> {{ x.author}} </td>
+                  <td width="1%"><img src="./pages/images/views.png" width="25px" height="25px"></td>
+                  <td width="20%"> {{ x.views }} views </td>
+                  <td width="1%"><img src="./pages/images/clock.png" width="25px" height="25px"></td>
+                  <td width="20%"> {{ x.ago }} </td>
+                </tr>
+                <tr>
+                  <td colspan="3"> Time : {{ x.timestamp }} </td>
+                  <td colspan="3"><button ng-click="unlike(x._id)">Unlike</button>
+                  <!-- <td colspan="2">
+                      <ul id="menu-vertical">
+                        <li><button>Add to Playlist</button>
+                          <ul>
+                            <li><a href="#">Playlist 1</a></li>
+                            <li><a href="#">Create Playlist</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td> -->
+                </tr>
+                <tr><br><br></tr>
+              </table>
+          </div>
+      </form>
+    </div>
+    
+    <script src ="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="./pages/accueil.js"></script>
+    <script src="./pages/likes.js"></script>
+
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
